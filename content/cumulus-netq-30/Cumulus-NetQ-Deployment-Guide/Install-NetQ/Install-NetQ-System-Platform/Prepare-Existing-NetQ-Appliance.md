@@ -10,24 +10,26 @@ To prepare your appliance:
 
 Log in to your appliance, then follow these steps.
 
-<details><summary>Verify that your appliance is a supported hardware model</summary>
+{{< expand "Verify that your appliance is a supported hardware model"  >}}
 
 - NetQ On-premises Appliance: SuperMicro SYS-6019P-WTR ({{<exlink url="https://www.supermicro.com/manuals/superserver/1U/MNL-1943.pdf" text="user manual">}}, {{<exlink url="https://www.supermicro.com/QuickRefs/superserver/1U/QRG-1943.pdf" text="quick reference guide">}})
 - NetQ Cloud Appliance: SuperMicro SYS-E300-9D ({{<exlink url="https://www.supermicro.com/manuals/superserver/mini-itx/MNL-2094.pdf" text="user manual">}})
 
-</details>
+{{< /expand >}}
 
-<details><summary>For on-premises solutions using the NetQ On-premises Appliance, optionally back up your NetQ data</summary>
+{{< expand "For on-premises solutions using the NetQ On-premises Appliance, optionally back up your NetQ data"  >}}
 
 1. Run the backup script to create a backup file in `/opt/<backup-directory>`.
 
     {{<notice note>}}
-Be sure to replace the <code>backup-directory</code> option with the name of the directory you want to use for the backup file. This location must be somewhere that is <em>off</em> of the appliance to avoid it being overwritten during these preparation steps.
-    {{</notice>}}
 
-    ```
-    cumulus@<hostname>:~$ ./backuprestore.sh --backup --localdir /opt/<backup-directory>
-    ```
+Be sure to replace the <code>backup-directory</code> option with the name of the directory you want to use for the backup file. This location must be somewhere that is <em>off</em> of the appliance to avoid it being overwritten during these preparation steps.
+
+{{</notice>}}
+
+```
+cumulus@<hostname>:~$ ./backuprestore.sh --backup --localdir /opt/<backup-directory>
+```
 
 2. Verify the backup file has been created.
 
@@ -37,9 +39,9 @@ Be sure to replace the <code>backup-directory</code> option with the name of the
     netq_master_snapshot_2020-01-09_07_24_50_UTC.tar.gz
     ```
 
-</details>
+{{< /expand >}}
 
-<details><summary>Install Ubuntu 18.04 LTS</summary>
+{{< expand "Install Ubuntu 18.04 LTS"  >}}
 
 Follow the instructions {{<exlink url="https://www.fosslinux.com/6406/how-to-install-ubuntu-server-18-04-lts.htm" text="here">}} to install Ubuntu.
 
@@ -55,9 +57,9 @@ Note these tips when installing:
     {{<figure src="/images/netq/install-ubuntu-set-creds-240.png" width="700">}}
 
 - When prompted, select *Install SSH server*.
-</details>
+{{< /expand >}}
 
-<details><summary>Configure networking</summary>
+{{< expand "Configure networking"  >}}
 
 Ubuntu uses Netplan for network configuration. You can give your appliance an IP address using DHCP or a static address.
 
@@ -109,9 +111,9 @@ Ubuntu uses Netplan for network configuration. You can give your appliance an IP
     $ sudo netplan apply
     ```
 
-</details>
+{{< /expand >}}
 
-<details><summary>Update the Ubuntu repository</summary>
+{{< expand "Update the Ubuntu repository"  >}}
 
 1. Reference and update the local apt repository.
 
@@ -135,9 +137,9 @@ the following line:
 The use of `netq-latest` in this example means that a `get` to the repository always retrieves the latest version of NetQ, even in the case where a major version update has been made. If you want to keep the repository on a specific version - such as `netq-2.2` - use that instead.
     {{%/notice%}}
 
-</details>
+{{< /expand >}}
 
-<details><summary>Install Python</summary>
+{{< expand "Install Python"  >}}
 Run the following commands:
 
 ```
@@ -145,9 +147,9 @@ root@ubuntu:~# apt-get update
 root@ubuntu:~# apt-get install python python2.7 python-apt python3-lib2to3 python3-distutils
 ```
 
-</details>
+{{< /expand >}}
 
-<details><summary>Obtain the latest NetQ Agent and CLI package</summary>
+{{< expand "Obtain the latest NetQ Agent and CLI package"  >}}
 Run the following commands:
 
 ```
@@ -155,9 +157,9 @@ root@ubuntu:~# apt-get update
 root@ubuntu:~# apt-get install netq-agent netq-apps
 ```
 
-</details>
+{{< /expand >}}
 
-<details><summary>Download the bootstrap and NetQ installation tarballs</summary>
+{{< expand "Download the bootstrap and NetQ installation tarballs"  >}}
 
 Download the software from the {{<exlink url="https://cumulusnetworks.com/downloads/" text="Cumulus Downloads">}} page.
 
@@ -205,15 +207,15 @@ Download the software from the {{<exlink url="https://cumulusnetworks.com/downlo
     sudo systemctl stop motd-news.{service,timer}
     ```
 
-    </details>
+    {{< /expand >}}
 
-<details><summary>Run the Bootstrap CLI</summary>
+{{< expand "Run the Bootstrap CLI"  >}}
 
 Run the bootstrap CLI on your appliance. Be sure to replace the *eth0* interface used in this example with the interface or IP address on the appliance used to listen for NetQ Agents.
 
 {{<netq-install/bootstrap server="single" version="3.0.0">}}
 
-</details>
+{{< /expand >}}
 
 {{<notice note>}}
 If you are creating a server cluster, you need to prepare each of those appliances as well. Repeat these steps if you are using a previously deployed appliance or refer to {{<link title="Install NetQ System Platform">}} for a new appliance.
