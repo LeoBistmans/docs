@@ -10,6 +10,10 @@ This document supports the Cumulus Linux 4.1 release and lists the new platforms
 - For a list of open and fixed issues in Cumulus Linux 4.1, see the {{<link url="Cumulus-Linux-4.1-Release-Notes" text="Cumulus Linux 4.1 Release Notes">}}.
 - To upgrade to Cumulus Linux 4.1, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
+## What's New in Cumulus Linux 4.1.2
+
+Cumulus Linux 4.1.2 contains bug fixes.
+
 ## What's New in Cumulus Linux 4.1.1
 
 Cumulus Linux 4.1.1 contains security bug fixes.
